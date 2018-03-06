@@ -1,31 +1,43 @@
-import Html exposing (Html, div, text, program)
+import Html exposing (Html, button, div, text, program)
+import Html.Events exposing (onClick)
 
 -- MODEL
 type alias Model = 
-  String
+  Bool
 
 init : ( Model, Cmd Msg )
 init = 
-  ( "Hello", Cmd.none)
+  ( False, Cmd.none)
 
 -- MESSAGES
 
 type Msg
-  = NoOp
+  = Expand
+  | Collapse
 
 -- VIEW
 
 view : Model -> Html Msg
 view model =
-  div [] [ text model ]
+  if model then
+    div [] 
+        [ button [ onClick Collapse ] [ text "Collapse" ]
+        , text "Widget"
+        ]
+  else 
+    div []
+        [ button [ onClick Expand ] [ text "Expand" ] ]
 
 -- UPDATE
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
-    NoOp ->
-      ( model, Cmd.none )
+    Expand ->
+      ( True, Cmd.none )
+    
+    Collapse ->
+      ( False, Cmd.none )
 
 -- SUBSCRIPTIONS
 
