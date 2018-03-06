@@ -1,8 +1,6 @@
 import Html exposing (Html, div, li, ul, text, program)
 
 -- MODEL
--- type alias Model = 
-  -- List String
 type alias Name = 
   { firstname : String
   , lastname : String
@@ -12,8 +10,10 @@ type alias Model = List Name
 
 init : ( Model, Cmd Msg )
 init = 
-  ( [ { firstname = "Meowze", lastname = "Dong" }, { firstname = "Hana", lastname = "March" }, { firstname = "Mia", lastname = "Kirmse"}], Cmd.none)
-  -- (["Meowze", "Hana", "Mia"], Cmd.none)
+  ( [ { firstname = "Meowze", lastname = "Dong" }
+    , { firstname = "Hana", lastname = "March" }
+    , { firstname = "Mia", lastname = "Kirmse"} ]
+    , Cmd.none)
 
 -- MESSAGES
 
@@ -21,15 +21,6 @@ type Msg
   = NoOp
 
 -- VIEW
-
--- view : Model -> Html Msg
--- view model =
---   ul [] (List.map viewGreeting model )
-
--- viewGreeting : String -> Html greeting
--- viewGreeting greeting =
---   li [] [ text greeting ]
-
 
 view : Model -> Html Msg
 view model =
