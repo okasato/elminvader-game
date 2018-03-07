@@ -45,19 +45,3 @@ update msg model =
   case msg of
     Edit ->
       ( model, Cmd.none )
-
--- -- SUBSCRIPTIONS
-
--- subscriptions : Model -> Sub Msg
--- subscriptions model =
---     Sub.none
-
--- -- MAIN
--- main : Program Never Model Msg
--- main =
---   program
---     { init = init
---     , view = view
---     , update = update
---     , subscriptions = subscriptions
---     }

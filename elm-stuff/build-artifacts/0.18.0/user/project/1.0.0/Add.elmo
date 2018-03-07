@@ -1,0 +1,68 @@
+var _user$project$Add$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'Firstname') {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{firstname: _p0._0});
+		} else {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{lastname: _p0._0});
+		}
+	});
+var _user$project$Add$Model = F2(
+	function (a, b) {
+		return {firstname: a, lastname: b};
+	});
+var _user$project$Add$initialModel = A2(_user$project$Add$Model, '', '');
+var _user$project$Add$Lastname = function (a) {
+	return {ctor: 'Lastname', _0: a};
+};
+var _user$project$Add$Firstname = function (a) {
+	return {ctor: 'Firstname', _0: a};
+};
+var _user$project$Add$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$input,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$type_('text'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$placeholder('firstname'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onInput(_user$project$Add$Firstname),
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				{ctor: '[]'}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$input,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$type_('text'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$placeholder('lastname'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Events$onInput(_user$project$Add$Lastname),
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					{ctor: '[]'}),
+				_1: {ctor: '[]'}
+			}
+		});
+};

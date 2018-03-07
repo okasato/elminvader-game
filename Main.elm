@@ -1,8 +1,8 @@
 module Main exposing (..)
 
 import Html exposing (Html, program)
--- import Html.Events exposing (onClick)
 import NameList
+import Add
 
 -- MODEL
 type alias Model = 
