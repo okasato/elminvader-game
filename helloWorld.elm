@@ -1,5 +1,5 @@
-import Html exposing (Html, div, li, ul, text, program)
-
+import Html exposing (Html, div, li, ul, text, program, button)
+import Html.Events exposing (onClick)
 -- MODEL
 type alias Name = 
   { firstname : String
@@ -18,24 +18,30 @@ init =
 -- MESSAGES
 
 type Msg
-  = NoOp
+  = Edit
 
 -- VIEW
 
 view : Model -> Html Msg
 view model =
-  ul [] (List.map viewGreeting model)
+  div [] [ ul [] (List.map viewGreeting model)
+  , button [] [ text "Add" ]
+  ] 
 
-viewGreeting : { a | firstname : String, lastname : String } -> Html greeting
+
+viewGreeting : { a | firstname : String, lastname : String } -> Html Msg
 viewGreeting greeting =
-  li [] [ text greeting.firstname, text " ", text greeting.lastname ]
+  div [] [ li [] [ text greeting.firstname, text " ", text greeting.lastname ]
+  , button [ onClick Edit ] [ text "Edit" ]
+  , button [] [ text "Delete" ]
+  ]
 
 -- UPDATE
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
-    NoOp ->
+    Edit ->
       ( model, Cmd.none )
 
 -- SUBSCRIPTIONS
