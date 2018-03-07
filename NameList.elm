@@ -1,4 +1,4 @@
-module List exposing (..)
+module NameList exposing (..)
 
 import Html exposing (Html, div, li, ul, text, program, button)
 import Html.Events exposing (onClick)

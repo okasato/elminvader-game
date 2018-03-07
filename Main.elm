@@ -1,15 +1,17 @@
-import Html exposing (Html, div, li, ul, text, program, button)
-import Html.Events exposing (onClick)
-import List
+module Main exposing (..)
+
+import Html exposing (Html, program)
+-- import Html.Events exposing (onClick)
+import NameList
 
 -- MODEL
 type alias Model = 
-  { listModel : List.Model
+  { namelistModel : NameList.Model
   }
 
 initialModel : Model
 initialModel = 
-  { listModel : List.initialModel
+  { namelistModel = NameList.initialModel
   }
 
 init : ( Model, Cmd Msg )
@@ -19,14 +21,14 @@ init =
 -- MESSAGES
 
 type Msg
-  = ListMsg List.Msg
+  = NameListMsg NameList.Msg
 
 -- VIEW
 
 view : Model -> Html Msg
 view model =
   Html.div [] 
-    [ Html.map ListMsg (List.view model.listModel)
+    [ Html.map NameListMsg (NameList.view model.namelistModel)
     ] 
 
 -- UPDATE
@@ -34,12 +36,12 @@ view model =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
-    ListMsg subMsg ->
+    NameListMsg subMsg ->
       let
-        ( updatedListModel, listCmd ) =
-          List.update subMsg model.listModel
+        ( updatedNameListModel, namelistCmd ) =
+          NameList.update subMsg model.namelistModel
       in
-        ( { model | listModel = updatedListModel }, Cmd.map ListMsg listCmd )
+        ( { model | namelistModel = updatedNameListModel }, Cmd.map NameListMsg namelistCmd )
 
 -- SUBSCRIPTIONS
 
