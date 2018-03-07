@@ -1,5 +1,8 @@
+module List exposing (..)
+
 import Html exposing (Html, div, li, ul, text, program, button)
 import Html.Events exposing (onClick)
+
 -- MODEL
 type alias Name = 
   { firstname : String
@@ -8,13 +11,12 @@ type alias Name =
 
 type alias Model = List Name
 
-init : ( Model, Cmd Msg )
-init = 
-  ( [ { firstname = "Meowze", lastname = "Dong" }
+initialModel : Model
+initialModel = 
+  [ { firstname = "Meowze", lastname = "Dong" }
     , { firstname = "Hana", lastname = "March" }
     , { firstname = "Mia", lastname = "Kirmse"} ]
-    , Cmd.none)
-
+  
 -- MESSAGES
 
 type Msg
@@ -44,18 +46,18 @@ update msg model =
     Edit ->
       ( model, Cmd.none )
 
--- SUBSCRIPTIONS
+-- -- SUBSCRIPTIONS
 
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
+-- subscriptions : Model -> Sub Msg
+-- subscriptions model =
+--     Sub.none
 
--- MAIN
-main : Program Never Model Msg
-main =
-  program
-    { init = init
-    , view = view
-    , update = update
-    , subscriptions = subscriptions
-    }
+-- -- MAIN
+-- main : Program Never Model Msg
+-- main =
+--   program
+--     { init = init
+--     , view = view
+--     , update = update
+--     , subscriptions = subscriptions
+--     }
