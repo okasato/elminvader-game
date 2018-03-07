@@ -31,10 +31,8 @@ view model =
 
 viewGreeting : { a | firstname : String, lastname : String } -> Html Msg
 viewGreeting greeting =
-  div [] [ li [] [ text greeting.firstname, text " ", text greeting.lastname ]
-  , button [ onClick Edit ] [ text "Edit" ]
-  , button [] [ text "Delete" ]
-  ]
+  div [] 
+    [ li [] [ text greeting.firstname, text " ", text greeting.lastname ] ]
 
 -- UPDATE
 
