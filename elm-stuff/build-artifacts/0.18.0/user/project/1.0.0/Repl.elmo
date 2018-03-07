@@ -1,18 +1,14 @@
 var _user$project$Repl$t_s_o_l = {ctor: '_Tuple0'};
 var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = {
-	ctor: '_Tuple2',
-	_0: {
+	ctor: '::',
+	_0: {f: 'abc', l: 'def'},
+	_1: {
 		ctor: '::',
-		_0: {firstname: 'Meowze', lastname: 'Dong'},
+		_0: {f: 'a', l: 'b'},
 		_1: {
 			ctor: '::',
-			_0: {firstname: 'Hana', lastname: 'March'},
-			_1: {
-				ctor: '::',
-				_0: {firstname: 'Mia', lastname: 'Kirmse'},
-				_1: {ctor: '[]'}
-			}
+			_0: {f: 'c', l: 'd'},
+			_1: {ctor: '[]'}
 		}
-	},
-	_1: _elm_lang$core$Platform_Cmd$none
+	}
 };

@@ -7,11 +7,13 @@ import Add
 -- MODEL
 type alias Model = 
   { namelistModel : NameList.Model
+  , addModel : Add.Model
   }
 
 initialModel : Model
 initialModel = 
   { namelistModel = NameList.initialModel
+  , addModel = Add.initialModel
   }
 
 init : ( Model, Cmd Msg )
@@ -22,6 +24,7 @@ init =
 
 type Msg
   = NameListMsg NameList.Msg
+  | AddMsg Add.Msg
 
 -- VIEW
 
@@ -29,6 +32,7 @@ view : Model -> Html Msg
 view model =
   Html.div [] 
     [ Html.map NameListMsg (NameList.view model.namelistModel)
+    , Html.map AddMsg (Add.view model.addModel)
     ] 
 
 -- UPDATE
@@ -42,6 +46,13 @@ update msg model =
           NameList.update subMsg model.namelistModel
       in
         ( { model | namelistModel = updatedNameListModel }, Cmd.map NameListMsg namelistCmd )
+    
+    AddMsg subMsg ->
+      let
+        ( updatedAddModel, addCmd ) =
+          Add.update subMsg model.addModel
+      in
+        ( { model | addModel = updatedAddModel }, Cmd.map AddMsg addCmd )
 
 -- SUBSCRIPTIONS
 

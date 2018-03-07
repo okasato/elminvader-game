@@ -1,6 +1,6 @@
 module Add exposing (..)
 
-import Html exposing (Html, div, input, text, program)
+import Html exposing (Html, div, input, button, text, program)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 
@@ -27,14 +27,15 @@ view model =
   div [] 
     [ input [ type_ "text", placeholder "firstname", onInput Firstname ] []
     , input [ type_ "text", placeholder "lastname", onInput Lastname ] []
+    , button [] [ text "Add" ]
     ]
 
 -- UPDATE
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
     Firstname firstname ->
-      { model | firstname = firstname }
+      ( { model | firstname = firstname }, Cmd.none )
     Lastname lastname ->
-      { model | lastname = lastname } 
+      ( { model | lastname = lastname }, Cmd.none ) 

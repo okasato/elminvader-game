@@ -2,13 +2,21 @@ var _user$project$Add$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		if (_p0.ctor === 'Firstname') {
-			return _elm_lang$core$Native_Utils.update(
-				model,
-				{firstname: _p0._0});
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{firstname: _p0._0}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
 		} else {
-			return _elm_lang$core$Native_Utils.update(
-				model,
-				{lastname: _p0._0});
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{lastname: _p0._0}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
 		}
 	});
 var _user$project$Add$Model = F2(
@@ -62,7 +70,18 @@ var _user$project$Add$view = function (model) {
 						}
 					},
 					{ctor: '[]'}),
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$button,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Add'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
 			}
 		});
 };

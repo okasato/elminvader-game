@@ -26,9 +26,8 @@ type Msg
 
 view : Model -> Html Msg
 view model =
-  div [] [ ul [] (List.map viewGreeting model)
-  , button [] [ text "Add" ]
-  ] 
+  div [] 
+    [ ul [] (List.map viewGreeting model) ] 
 
 
 viewGreeting : { a | firstname : String, lastname : String } -> Html Msg

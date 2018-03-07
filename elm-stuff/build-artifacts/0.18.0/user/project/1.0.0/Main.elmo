@@ -1,10 +1,14 @@
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$initialModel = {namelistModel: _user$project$NameList$initialModel};
+var _user$project$Main$initialModel = {namelistModel: _user$project$NameList$initialModel, addModel: _user$project$Add$initialModel};
 var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
-var _user$project$Main$Model = function (a) {
-	return {namelistModel: a};
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {namelistModel: a, addModel: b};
+	});
+var _user$project$Main$AddMsg = function (a) {
+	return {ctor: 'AddMsg', _0: a};
 };
 var _user$project$Main$NameListMsg = function (a) {
 	return {ctor: 'NameListMsg', _0: a};
@@ -19,22 +23,42 @@ var _user$project$Main$view = function (model) {
 				_elm_lang$html$Html$map,
 				_user$project$Main$NameListMsg,
 				_user$project$NameList$view(model.namelistModel)),
-			_1: {ctor: '[]'}
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$map,
+					_user$project$Main$AddMsg,
+					_user$project$Add$view(model.addModel)),
+				_1: {ctor: '[]'}
+			}
 		});
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		var _p1 = A2(_user$project$NameList$update, _p0._0, model.namelistModel);
-		var updatedNameListModel = _p1._0;
-		var namelistCmd = _p1._1;
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{namelistModel: updatedNameListModel}),
-			_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$NameListMsg, namelistCmd)
-		};
+		if (_p0.ctor === 'NameListMsg') {
+			var _p1 = A2(_user$project$NameList$update, _p0._0, model.namelistModel);
+			var updatedNameListModel = _p1._0;
+			var namelistCmd = _p1._1;
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{namelistModel: updatedNameListModel}),
+				_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$NameListMsg, namelistCmd)
+			};
+		} else {
+			var _p2 = A2(_user$project$Add$update, _p0._0, model.addModel);
+			var updatedAddModel = _p2._0;
+			var addCmd = _p2._1;
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{addModel: updatedAddModel}),
+				_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$AddMsg, addCmd)
+			};
+		}
 	});
 var _user$project$Main$main = _elm_lang$html$Html$program(
 	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
