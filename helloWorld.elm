@@ -1,4 +1,6 @@
-import Html exposing (Html, div, li, ul, text, program, button)
+import Html exposing (Html, div, li, ul, text, input, program, button)
+import Html.Attributes exposing (..)
+import Html.Events exposing (onInput)
 import Html.Events exposing (onClick)
 -- MODEL
 type alias Name = 
@@ -18,16 +20,18 @@ init =
 -- MESSAGES
 
 type Msg
-  = Edit
-
+  = Add
+  -- | Firstname String
+  -- | Lastname String
 -- VIEW
 
 view : Model -> Html Msg
 view model =
   div [] [ ul [] (List.map viewGreeting model)
-  , button [] [ text "Add" ]
+  -- , input [ type_ "text", placeholder "firstname", onInput Firstname ] []
+  -- , input [ type_ "text", placeholder "lastname", onInput Lastname ] []
+  , button [onClick Add] [ text "Add" ]
   ] 
-
 
 viewGreeting : { a | firstname : String, lastname : String } -> Html Msg
 viewGreeting greeting =
@@ -39,9 +43,16 @@ viewGreeting greeting =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
-    Edit ->
-      ( model, Cmd.none )
-
+    Add ->
+      let 
+        updatedModel =
+          { firstname = "henoheno", lastname = "moheji" } :: model
+      in
+      ( updatedModel, Cmd.none )
+    -- Firstname firstname ->
+    --   ( { model | firstname = firstname }, Cmd.none )
+    -- Lastname lastname ->
+    --   ( { model | lastname = lastname }, Cmd.none ) 
 -- SUBSCRIPTIONS
 
 subscriptions : Model -> Sub Msg
