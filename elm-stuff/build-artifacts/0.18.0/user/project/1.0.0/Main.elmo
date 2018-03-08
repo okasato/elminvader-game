@@ -1,120 +1,23 @@
-var _user$project$Main$subscriptions = function (model) {
-	return _elm_lang$core$Platform_Sub$none;
-};
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		var updatedModel = {
-			ctor: '::',
-			_0: {firstname: 'henoheno', lastname: 'moheji'},
-			_1: model
-		};
-		return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
-	});
-var _user$project$Main$viewGreeting = function (greeting) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$li,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(greeting.firstname),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html$text(' '),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$html$Html$text(greeting.lastname),
-							_1: {ctor: '[]'}
-						}
-					}
-				}),
-			_1: {ctor: '[]'}
-		});
-};
-var _user$project$Main$init = {
-	ctor: '_Tuple2',
-	_0: {
-		ctor: '::',
-		_0: {firstname: 'Meowze', lastname: 'Dong'},
-		_1: {
-			ctor: '::',
-			_0: {firstname: 'Hana', lastname: 'March'},
-			_1: {
-				ctor: '::',
-				_0: {firstname: 'Mia', lastname: 'Kirmse'},
-				_1: {ctor: '[]'}
-			}
-		}
-	},
-	_1: _elm_lang$core$Platform_Cmd$none
-};
-var _user$project$Main$Name = F2(
+var _user$project$Main$Model = F2(
 	function (a, b) {
-		return {firstname: a, lastname: b};
+		return {difficulty: a, questions: b};
 	});
-var _user$project$Main$Add = {ctor: 'Add'};
-var _user$project$Main$view = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$ul,
-				{ctor: '[]'},
-				A2(_elm_lang$core$List$map, _user$project$Main$viewGreeting, model)),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$input,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$type_('text'),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$placeholder('firstname'),
-							_1: {ctor: '[]'}
-						}
-					},
-					{ctor: '[]'}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$input,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$type_('text'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$placeholder('lastname'),
-								_1: {ctor: '[]'}
-							}
-						},
-						{ctor: '[]'}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$button,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Add),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html$text('Add'),
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-};
-var _user$project$Main$main = _elm_lang$html$Html$program(
-	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
+var _user$project$Main$init = A2(
+	_user$project$Main$Model,
+	_user$project$Data_Difficulty$default,
+	{
+		ctor: '::',
+		_0: A4(
+			_user$project$Data_Question$Question,
+			_elm_lang$core$Maybe$Just('To get to the other side'),
+			'Why did the chicken cross the road?',
+			'To get to the other side',
+			{ctor: '[]'}),
+		_1: {ctor: '[]'}
+	});
+var _user$project$Main$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
+	_elm_lang$html$Html$text(
+		A2(
+			_elm_lang$core$String$join,
+			', ',
+			A2(_elm_lang$core$List$map, _user$project$View_Question$view, _user$project$Main$init.questions))));

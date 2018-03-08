@@ -1,0 +1,4 @@
+var _user$project$Data_Question$Question = F4(
+	function (a, b, c, d) {
+		return {userAnswer: a, question: b, correct: c, incorrect: d};
+	});

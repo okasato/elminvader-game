@@ -1,101 +1,71 @@
-import Html exposing (Html, div, li, ul, text, input, table, thead, program, button)
-import Html.Attributes exposing (..)
-import Html.Events exposing (onInput)
-import Html.Events exposing (onClick)
+module Main exposing (..)
 
--- MAIN
-main : Program Never Model Msg
-main =
-  program
-    { init = init
-    , view = view
-    , update = update
-    , subscriptions = subscriptions
-    }
+import Html exposing (text)
+import Set
+import Array
+import Dict
 
--- MODEL
-type alias Model =
-  { persons : List Person
-  , id : ID
-  , firstname : Name
-  , lastname : Name
+init =
+  { question = "What is it?"
+  , answer = "To get to the other side"
   }
 
-init : ( Model, Cmd Msg )
-init = 
-  ( { persons = [
-      { id = 1, firstname = "Meowze", lastname = "Dong" }
-      , { id = 2, firstname = "Hana", lastname = "March" }
-      , { id = 3, firstname = "Mia", lastname = "Kirmse"}
-      ]
-    , firstname = ""
-    , lastname = ""
-    }
-  , Cmd.none  
-  )
+view model = 
+  text
+    ("Question: "
+      ++ ( .question model )
+      ++ " Answer: "
+      ++ ( .answer model )
+    )
 
-type alias Person = 
-  { id : ID 
-  , firstname : String 
-  , lastname : String
-  }
+list = 
+  1 :: [ 2 ] ++ [ 3 ]
 
-type alias ID =
-  Int
+transformList list =
+  list
+    |> List.map (\a -> a + 1)
+    |> List.map toString
+    |> String.join ","
 
-type alias Name = 
-  String
+set = 
+  Set.fromList (list)
 
--- MESSAGES
+transformSet set =
+  set
+    |> Set.map (\a -> a + 1)
+    |> Set.map toString
+    |> Set.toList
+    |> String.join ", "
 
-type Msg
-  = Id ID
-  | FirstName Name
-  | LastName Name
-  | NewPerson
+array = 
+  Array.empty
+    |> Array.push 1
+    |> Array.push 2
+    |> Array.push 3
 
--- UPDATE
+transformArray array =
+  array 
+    |> Array.get 2
+    |> toString
 
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg ({ persons, firstname, lastname } as model) =
-  case msg of
-    Id id -> 
-      ( { model | id = id }, Cmd.none )
-    
-    FirstName name ->
-      ( { model | firstname = firstname }, Cmd.none )
-      
-    LastName name ->
-      ( { model | lastname = lastname }, Cmd.none )
-      
-    NewPerson ->
-      ( { model | persons = { id = id, fitstname = firstname, lastname = lastname } :: persons }, Cmd.none )
+(=>) =
+  (,)
 
--- VIEW
-
-view : Model -> Html Msg
-view ({ persons, firstname, lastname } as model) =
-  div [] [ addForm id name ] 
-
-addForm : Name -> ID -> Html Msg
-addForm name id =
-  div []
-    [ div [] [ input [ type_ "text", placeholder "firstname" onInput FirstName ] [] ]
-    , div [] [ input [ type_ "text", placeholder "lsstname" onInput LastName ] [] ]
-    , div [] [ button [onClick NewPerson] [ text "Add" ] ]
+dict = 
+  Dict.fromList
+    [ "question" => "Why did the chicken cross the road?"
+    , "answer" => "To get to the other side"
     ]
 
--- personList : List Person -> ID -> Name -> Html Msg
--- personList persons id name =
-  
+transformDict dict =
+  Dict.update
+    "answer"
+    (\a -> (Maybe.map String.toUpper) a)
+    dict
 
---  person : 
---     [ li [] [ text firstname, text " ", text lastname ] ]
-
-
--- SUBSCRIPTIONS
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
-
+main = 
+  -- view init
+  dict
+    |> transformDict
+    |> toString
+    |> text 
